@@ -68,7 +68,7 @@ public class ChungToi {
 		if (!validOrientation(newOrientation)) return -1;
 		if (!validDirection(moveDirection)) return -1;
 		if (!validDistance(moveDistance)) return -1;
-		int newPosition = findNewPosition(initialPosition, findOrientation(initialPosition), moveDirection, moveDistance);
+		int newPosition = findNewPosition(initialPosition, findOrientation(initialPosition), newOrientation, moveDirection, moveDistance);
 		if (newPosition == -1) return 0;
 		board.setCharAt(initialPosition, '-');
 		board.setCharAt(newPosition, getPiece(newOrientation));
@@ -257,12 +257,12 @@ public class ChungToi {
 	 *
 	 */
 
-	private int findNewPosition(int initialPosition, int orientation, int moveDirection, int moveDistance){
+	private int findNewPosition(int initialPosition, int orientation, int newOrientation, int moveDirection, int moveDistance){
 		switch (initialPosition) {
 			case 0: 
 				switch (moveDirection){
 					case 4:
-						if (moveDistance > 0) return -1;
+						if (moveDistance > 0 || orientation == newOrientation) return -1;
 						return initialPosition;
 					case 5:
 						if (orientation == 1) return -1;
@@ -315,7 +315,7 @@ public class ChungToi {
 								return -1;
 						}
 					case 4:
-						if (moveDistance > 0) return -1;
+						if (moveDistance > 0 || orientation == newOrientation) return -1;
 						return initialPosition;
 					case 5:
 						if (orientation == 1) return -1;
@@ -374,7 +374,7 @@ public class ChungToi {
 								return -1;
 						}
 					case 4:
-						if (moveDistance != 0) return -1;
+						if (moveDistance > 0 || orientation == newOrientation) return -1;
 						return initialPosition;
 					case 6:
 						if (orientation == 0) return -1;
@@ -424,7 +424,7 @@ public class ChungToi {
 								return -1;
 						}
 					case 4:
-						if (moveDistance > 0) return -1;
+						if (moveDistance > 0 || orientation == newOrientation) return -1;
 						return initialPosition;
 					case 5:
 						if (orientation == 1) return -1;
@@ -498,7 +498,7 @@ public class ChungToi {
 								return -1;
 						}
 					case 4:
-						if (moveDistance > 0) return -1;
+						if (moveDistance > 0 || orientation == newOrientation) return -1;
 						return initialPosition;
 					case 5:
 						if (orientation == 1) return -1;
@@ -572,7 +572,7 @@ public class ChungToi {
 								return -1;
 						}
 					case 4:
-						if (moveDistance > 0) return -1;
+						if (moveDistance > 0 || orientation == newOrientation) return -1;
 						return initialPosition;
 					case 6:
 						if (orientation == 0) return -1;
@@ -622,7 +622,7 @@ public class ChungToi {
 								return -1;
 						}
 					case 4:
-						if (moveDistance > 0) return -1;
+						if (moveDistance > 0 || orientation == newOrientation) return -1;
 						return initialPosition;
 					case 5:
 						if (orientation == 1) return -1;
@@ -681,7 +681,7 @@ public class ChungToi {
 								return -1;
 						}
 					case 4:
-						if (moveDistance > 0) return -1;
+						if (moveDistance > 0 || orientation == newOrientation) return -1;
 						return initialPosition;
 					case 5:
 						if (orientation == 1) return -1;
@@ -734,7 +734,7 @@ public class ChungToi {
 								return -1;
 						}
 					case 4:
-						if (moveDistance > 0) return -1;
+						if (moveDistance > 0 || orientation == newOrientation) return -1;
 						return initialPosition;
 					default:
 						return -1;
