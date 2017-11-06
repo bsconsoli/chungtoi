@@ -14,6 +14,7 @@ public class ChungToi {
 
 	private StringBuilder board;
 	private boolean whiteTurn;  // Saves whose turn it is currently; true for white player, false for black player
+	//private int whitePlayer, blackPlayer;
 
 	public ChungToi(){
 		whiteTurn = true;
@@ -121,6 +122,22 @@ public class ChungToi {
 		if (whiteTurn) return 1;
 		return 0;
 	}
+
+	// public int getWhitePlayer(){
+	// 	return whitePlayer;
+	// }
+
+	// public String getBlackPlayer(){
+	// 	return blackPlayer;
+	// }
+
+	// public void setWhitePlayer(int wpl){
+	// 	whitePlayer = wpl;
+	// }
+
+	// public void getBlackPlayer(int bpl){
+	// 	blackPlayer = bpl;
+	// }
 
 	public void wipeBoard(){
 		whiteTurn = true;

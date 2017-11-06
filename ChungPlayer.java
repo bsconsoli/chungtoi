@@ -12,12 +12,11 @@
 public class ChungPlayer {
 
 	private StringBuilder name; // Saves the name of the current client using this player
-	private int playerID = -1;
 	private boolean free = true; // Whether this player is currently in a game or free to be used by a client
-	private final int id; // Permanent ID provided upon object creation
-	private final int opponentId; // Permanent ID of opponent provided during object creation
-	private final int color; // Permanent player color provided during object creation; 0 is black, 1 is white
-	private final ChungToi game; // Permanent game linked to this player; provided during object creation
+	private int id; // Permanent ID provided upon object creation
+	private int opponentId; // Permanent ID of opponent provided during object creation
+	private int color; // Permanent player color provided during object creation; 0 is black, 1 is white
+	private ChungToi game; // Permanent game linked to this player; provided during object creation
 
 	public ChungPlayer(int permID, int opId, int playerColor, ChungToi playerGame){
 		name = new StringBuilder();
@@ -27,16 +26,14 @@ public class ChungPlayer {
 		game = playerGame;
 	}
 
-	public int registerPlayer(String playerName, int newID){
+	public int registerPlayer(String playerName){
 		name.append(playerName);
-		playerID = newID;
 		free = false;
 		return id;
 	}
 	
 	public void clearPlayer(){
 		name.setLength(0);
-		playerID = -1;
 		free = true;
 	}
 

@@ -15,6 +15,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface ChungInterface extends Remote {
+	public int preRegistro(String nome1, int id1, String nome2, int id2) throws RemoteException;
 	public int registraJogador(String nome) throws RemoteException;
 	public int encerraPartida(int userId) throws RemoteException;
 	public int temPartida(int userId) throws RemoteException;
