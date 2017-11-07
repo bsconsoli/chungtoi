@@ -89,7 +89,7 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
         if (jogador == null) return -1;
         if (obtemOponente(idUsuario).length() == 0) return -2;
         if (jogador.getColor() != jogador.getGame().getPlayerTurn()) return -4;
-		return jogadores.get(idUsuario).getGame().setPiece(posNova, orPeca);
+		return jogador.getGame().setPiece(posNova, orPeca);
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
         if (jogador == null) return -1;
         if (obtemOponente(idUsuario).length() == 0) return -2;
         if (jogador.getColor() != jogador.getGame().getPlayerTurn()) return -4;
-		return jogadores.get(idUsuario).getGame().movePiece(posInit, sentDesloc, distDesloc, orNova);
+		return jogador.getGame().movePiece(posInit, sentDesloc, distDesloc, orNova);
 	}
 
 	@Override
