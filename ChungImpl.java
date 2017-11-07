@@ -77,11 +77,17 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
 
 	@Override
 	public int posicionaPeca(int idUsuario, int posNova, int orPeca) throws RemoteException{
+        if (jogadores.get(idUsuario) == null) return -1;
+        if (obtemOponente.length() == 0) return -2;
+        if (jogador.getColor() != jogador.getGame().getPlayerTurn()) return -4;
 		return jogadores.get(idUsuario).getGame().setPiece(posNova, orPeca);
 	}
 
 	@Override
 	public int movePeca(int idUsuario, int posInit, int sentDesloc, int distDesloc, int orNova) throws RemoteException{
+        if (jogadores.get(idUsuario) == null) return -1;
+        if (obtemOponente.length() == 0) return -2;
+        if (jogador.getColor() != jogador.getGame().getPlayerTurn()) return -4;
 		return jogadores.get(idUsuario).getGame().movePiece(posInit, sentDesloc, distDesloc, orNova);
 	}
 

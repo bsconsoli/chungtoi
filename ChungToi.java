@@ -15,6 +15,8 @@ public class ChungToi {
 	private StringBuilder board;
 	private boolean whiteTurn;  // Saves whose turn it is currently; true for white player, false for black player
 	//private int whitePlayer, blackPlayer;
+    private int blkPcs = 0;
+    private int whtPcs = 0;
 
 	public ChungToi(){
 		whiteTurn = true;
@@ -36,11 +38,14 @@ public class ChungToi {
 	 */
 
 	public int setPiece(int position, int orientation){
-		if (!validPosition(position)) return -1;
-		if (!validOrientation(orientation)) return -1;
+        if (whiteTurn && whtPcs == 3 || !whiteTurn && blkPcs == 3) return -5;
+		if (!validPosition(position)) return -3;
+		if (!validOrientation(orientation)) return -3;
 		if (!positionEmpty(position)) return 0;
 		board.setCharAt(position, getPiece(orientation));
 		nextPlayer();
+        if (whiteTurn) whtPcs++;
+        else blkPcs++;
 		return 1;
 	}
 
@@ -64,11 +69,12 @@ public class ChungToi {
 	 */
 
 	public int movePiece(int initialPosition, int moveDirection, int moveDistance, int newOrientation){
+        if (whiteTurn && whtPcs != 3 || !whiteTurn && blkPcs != 3) return -5;
 		if (!validPosition(initialPosition)) return -1;
-		if (!currentPlayerPiece(initialPosition)) return 0;
-		if (!validOrientation(newOrientation)) return -1;
-		if (!validDirection(moveDirection)) return -1;
-		if (!validDistance(moveDistance)) return -1;
+		if (!currentPlayerPiece(initialPosition)) return -3;
+		if (!validOrientation(newOrientation)) return -3;
+		if (!validDirection(moveDirection)) return -3;
+		if (!validDistance(moveDistance)) return -3;
 		int newPosition = findNewPosition(initialPosition, findOrientation(initialPosition), newOrientation, moveDirection, moveDistance);
 		if (newPosition == -1) return 0;
 		board.setCharAt(initialPosition, '-');
