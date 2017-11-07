@@ -1,4 +1,4 @@
-all:			ChungImpl.class ChungInterface.class \
+all:				ChungImpl.class ChungInterface.class \
 				ChungPlayer.class ChungToi.class
 
 ChungImpl.class:	ChungImpl.java ChungInterface.class

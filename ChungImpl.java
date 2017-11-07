@@ -15,15 +15,17 @@
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
+import java.util.Hashtable;
 
 public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
 
 	private static final long serialVersionUID = 1234L;
-	private static Dictionary<Integer, ChungPlayer> jogadores = new Dictionary<Integer, ChungPlayer>(); // Array containing all players
-	private static Dictionary<String, Integer> jogadoresReservados = new Dictinary<String, Integer>(); // Array containing preregistered players
+	private static Hashtable<Integer, ChungPlayer> jogadores; // Array containing all players
+	private static Hashtable<String, Integer> jogadoresReservados; // Array containing preregistered players
 
 	protected ChungImpl() throws RemoteException {
-
+        jogadores = new Hashtable<Integer, ChungPlayer>();
+        jogadoresReservados = new Hashtable<String, Integer>();
 	}
 
 	@Override
@@ -56,7 +58,7 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
 	public int temPartida(int idUsuario) throws RemoteException{
 		ChungPlayer jogador = jogadores.get(idUsuario);
         if (jogador == null) return -1;
-		if (jogadores.(jogador.getOpponent()).getName().length() == 0) return 0;
+		if (jogadores.get(jogador.getOpponent()).getName().length() == 0) return 0;
 		if (jogador.getColor() == 1) return 1;
 		if (jogador.getColor() == 0) return 2;
 		return -1;
@@ -77,22 +79,24 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
 	@Override
 	public String obtemTabuleiro(int idUsuario) throws RemoteException{
         if (jogadores.get(idUsuario) == null) return "";
-        if (obtemOponente.length() == 0) return "";
+        if (obtemOponente(idUsuario).length() == 0) return "";
 		return jogadores.get(idUsuario).getGame().getBoard();
 	}
 
 	@Override
 	public int posicionaPeca(int idUsuario, int posNova, int orPeca) throws RemoteException{
-        if (jogadores.get(idUsuario) == null) return -1;
-        if (obtemOponente.length() == 0) return -2;
+        ChungPlayer jogador = jogadores.get(idUsuario);
+        if (jogador == null) return -1;
+        if (obtemOponente(idUsuario).length() == 0) return -2;
         if (jogador.getColor() != jogador.getGame().getPlayerTurn()) return -4;
 		return jogadores.get(idUsuario).getGame().setPiece(posNova, orPeca);
 	}
 
 	@Override
 	public int movePeca(int idUsuario, int posInit, int sentDesloc, int distDesloc, int orNova) throws RemoteException{
-        if (jogadores.get(idUsuario) == null) return -1;
-        if (obtemOponente.length() == 0) return -2;
+        ChungPlayer jogador = jogadores.get(idUsuario);
+        if (jogador == null) return -1;
+        if (obtemOponente(idUsuario).length() == 0) return -2;
         if (jogador.getColor() != jogador.getGame().getPlayerTurn()) return -4;
 		return jogadores.get(idUsuario).getGame().movePiece(posInit, sentDesloc, distDesloc, orNova);
 	}
