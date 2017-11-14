@@ -9,7 +9,8 @@
  * 
  */
 
-//temporização, pode tirar? -- numero máximo de jogadores, necessário? -- usuario ja cadastrado, é problema mesmo com preregistro?
+//temporização, pode tirar? -- numero máximo de jogadores, necessário? 
+//usuario ja cadastrado, é problema mesmo com preregistro?
 
 package chungtoi;
 
@@ -21,7 +22,6 @@ import java.util.Hashtable;
 @WebService(endpointInterface =  "chungtoi.ChungServer")
 public class ChungServerImpl implements ChungServer {
 
-	//private static final long serialVersionUID = 1234L;
 	private static Hashtable<Integer, ChungPlayer> jogadores; // Array containing all players
 	private static Hashtable<String, Integer> jogadoresReservados; // Array containing preregistered players
 

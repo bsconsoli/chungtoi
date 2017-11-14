@@ -1,6 +1,6 @@
 /**
  * @file ChungTWSclient.java
- * @author Roland Teodorowitsch
+ * @author Roland Teodorowitsch and Bernardo Consoli
  * @date November 2017
  */
 
@@ -18,8 +18,6 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class ChungTWSclient {
-	
-
 
 	public static void main(String[] args) throws Exception {
 		URL url = new URL("http://127.0.0.1:9876/chungtoi?wsdl");

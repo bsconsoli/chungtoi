@@ -1,3 +1,14 @@
+/**
+ * @file ChungServerPublisher.java
+ * @author Bernardo Scapini Consoli
+ * @date November 2017
+ * 
+ * @section DESCRIPTION
+ * 
+ * Publishes the endpoint of the ChungServer web service. 
+ * 
+ */
+
 package chungtoi;
 
 import javax.xml.ws.Endpoint;

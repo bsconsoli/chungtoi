@@ -2,11 +2,13 @@
  * @file ChungToi.java
  * @author Bernardo Scapini Consoli
  * @date October 2017
- * 
+ * @modified November 2017 
+ *
  * @section DESCRIPTION
  * 
  * Implementation of the game Chung Toi, as specified in TRABALHO DA AREA 1: JOGO CHUNG TOI DISTRIBUIDO
- * EM JAVA RMI by Roland Teodorowitsch
+ * EM JAVA RMI by Roland Teodorowitsch. Updated to conform to TRABALHO 2: JOGO CHUNG TOI AUTOMATIZADO
+ * EM JAVA WEB SERVICES by Roland Teodorowitsch
  * 
  */
 
@@ -16,7 +18,6 @@ public class ChungToi {
 
 	private StringBuilder board;
 	private boolean whiteTurn;  // Saves whose turn it is currently; true for white player, false for black player
-	//private int whitePlayer, blackPlayer;
     private int blkPcs = 0;
     private int whtPcs = 0;
 
@@ -131,22 +132,6 @@ public class ChungToi {
 		if (whiteTurn) return 1;
 		return 0;
 	}
-
-	// public int getWhitePlayer(){
-	// 	return whitePlayer;
-	// }
-
-	// public String getBlackPlayer(){
-	// 	return blackPlayer;
-	// }
-
-	// public void setWhitePlayer(int wpl){
-	// 	whitePlayer = wpl;
-	// }
-
-	// public void getBlackPlayer(int bpl){
-	// 	blackPlayer = bpl;
-	// }
 
 	public void wipeBoard(){
 		whiteTurn = true;
