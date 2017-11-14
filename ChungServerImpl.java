@@ -10,7 +10,7 @@
  */
 
 //temporização, pode tirar? -- numero máximo de jogadores, necessário? 
-//usuario ja cadastrado, é problema mesmo com preregistro?
+//usuario ja cadastrado, é problema mesmo com preregistro? -- 
 
 package chungtoi;
 
