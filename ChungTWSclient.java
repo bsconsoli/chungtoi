@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class ChungTWSclient {
 
 	public static void main(String[] args) throws Exception {
-		URL url = new URL("http://127.0.0.1:9876/chungtoi?wsdl");
+		URL url = new URL("http://" + args[0] + ":9876/chungtoi?wsdl");
 		QName qname = new QName("http://chungtoi/", "ChungServerImplService");
 		Service ws = Service.create(url, qname);
 		ChungServer chung = ws.getPort(ChungServer.class);
