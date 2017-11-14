@@ -1,34 +1,35 @@
 /**
- * @file ChungImpl.java
+ * @file ChungServerImpl.java
  * @author Bernardo Scapini Consoli
- * @date October 2017
- * @modification November 2017
+ * @date November 2017
  * 
  * @section DESCRIPTION
  * 
- * Implementation of ChungInterface.java.
+ * Implementation of ChungServer.java.
  * 
  */
 
 //temporização, pode tirar? -- numero máximo de jogadores, necessário? -- usuario ja cadastrado, é problema mesmo com preregistro?
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+package chungtoi;
+
+import java.util.Date;
+import javax.jws.WebService;
 import java.util.LinkedList;
 import java.util.Hashtable;
 
-public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
+@WebService(endpointInterface =  "chungtoi.ChungServer")
+public class ChungServerImpl implements ChungServer {
 
-	private static final long serialVersionUID = 1234L;
+	//private static final long serialVersionUID = 1234L;
 	private static Hashtable<Integer, ChungPlayer> jogadores; // Array containing all players
 	private static Hashtable<String, Integer> jogadoresReservados; // Array containing preregistered players
 
-	protected ChungImpl() throws RemoteException {
+	protected ChungServerImpl() {
         jogadores = new Hashtable<Integer, ChungPlayer>();
         jogadoresReservados = new Hashtable<String, Integer>();
 	}
 
-	@Override
 	public int preRegistro(String nome1, int id1, String nome2, int id2){
 		ChungToi game = new ChungToi();
 		jogadoresReservados.put(nome1, id1);
@@ -38,8 +39,7 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
         return 0;
 	}
 
-	@Override
-	public int registraJogador(String nome) throws RemoteException{
+	public int registraJogador(String nome){
 		int playerId = jogadoresReservados.get(nome);
 		ChungPlayer newPlayer = jogadores.get(playerId);
 		newPlayer.registerPlayer(nome);
@@ -47,15 +47,13 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
 		return playerId;
 	}
 
-	@Override
-	public int encerraPartida(int idUsuario) throws RemoteException{
+	public int encerraPartida(int idUsuario){
         if (jogadores.get(idUsuario) == null) return -1;
 		jogadores.remove(idUsuario); 
 		return 0;
 	}
 
-	@Override
-	public int temPartida(int idUsuario) throws RemoteException{
+	public int temPartida(int idUsuario){
 		ChungPlayer jogador = jogadores.get(idUsuario);
         if (jogador == null) return -1;
 		if (jogadores.get(jogador.getOpponent()).getName().length() == 0) return 0;
@@ -64,8 +62,7 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
 		return -1;
 	}
 
-	@Override
-	public int ehMinhaVez(int idUsuario) throws RemoteException{
+	public int ehMinhaVez(int idUsuario){
 		ChungPlayer jogador = jogadores.get(idUsuario);
         if (jogador == null) return -1;
 		if (jogadores.get(jogador.getOpponent()).getName().length() == 0) return -2;
@@ -76,15 +73,13 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
 		else return -1;
 	}
 
-	@Override
-	public String obtemTabuleiro(int idUsuario) throws RemoteException{
+	public String obtemTabuleiro(int idUsuario){
         if (jogadores.get(idUsuario) == null) return "";
         if (obtemOponente(idUsuario).length() == 0) return "";
 		return jogadores.get(idUsuario).getGame().getBoard();
 	}
 
-	@Override
-	public int posicionaPeca(int idUsuario, int posNova, int orPeca) throws RemoteException{
+	public int posicionaPeca(int idUsuario, int posNova, int orPeca) {
         ChungPlayer jogador = jogadores.get(idUsuario);
         if (jogador == null) return -1;
         if (obtemOponente(idUsuario).length() == 0) return -2;
@@ -92,8 +87,7 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
 		return jogador.getGame().setPiece(posNova, orPeca);
 	}
 
-	@Override
-	public int movePeca(int idUsuario, int posInit, int sentDesloc, int distDesloc, int orNova) throws RemoteException{
+	public int movePeca(int idUsuario, int posInit, int sentDesloc, int distDesloc, int orNova){
         ChungPlayer jogador = jogadores.get(idUsuario);
         if (jogador == null) return -1;
         if (obtemOponente(idUsuario).length() == 0) return -2;
@@ -101,8 +95,7 @@ public class ChungImpl extends UnicastRemoteObject implements ChungInterface {
 		return jogador.getGame().movePiece(posInit, sentDesloc, distDesloc, orNova);
 	}
 
-	@Override
-	public String obtemOponente(int idUsuario) throws RemoteException{
+	public String obtemOponente(int idUsuario){
         if (jogadores.get(idUsuario) == null) return "";
 		return jogadores.get(jogadores.get(idUsuario).getOpponent()).getName();
 	}

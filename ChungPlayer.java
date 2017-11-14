@@ -9,6 +9,8 @@
  * 
  */
 
+package chungtoi;
+
 public class ChungPlayer {
 
 	private StringBuilder name; // Saves the name of the current client using this player

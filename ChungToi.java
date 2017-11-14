@@ -10,6 +10,8 @@
  * 
  */
 
+package chungtoi;
+
 public class ChungToi {
 
 	private StringBuilder board;
@@ -20,7 +22,7 @@ public class ChungToi {
 
 	public ChungToi(){
 		whiteTurn = true;
-		board = new StringBuilder("---------");
+		board = new StringBuilder(".........");
 	}
 
 	/**
@@ -38,14 +40,15 @@ public class ChungToi {
 	 */
 
 	public int setPiece(int position, int orientation){
+
         if (whiteTurn && whtPcs == 3 || !whiteTurn && blkPcs == 3) return -5;
 		if (!validPosition(position)) return -3;
 		if (!validOrientation(orientation)) return -3;
 		if (!positionEmpty(position)) return 0;
 		board.setCharAt(position, getPiece(orientation));
-		nextPlayer();
         if (whiteTurn) whtPcs++;
         else blkPcs++;
+        nextPlayer();
 		return 1;
 	}
 
@@ -77,7 +80,7 @@ public class ChungToi {
 		if (!validDistance(moveDistance)) return -3;
 		int newPosition = findNewPosition(initialPosition, findOrientation(initialPosition), newOrientation, moveDirection, moveDistance);
 		if (newPosition == -1) return 0;
-		board.setCharAt(initialPosition, '-');
+		board.setCharAt(initialPosition, '.');
 		board.setCharAt(newPosition, getPiece(newOrientation));
 		nextPlayer();
 		return 1;
@@ -147,7 +150,7 @@ public class ChungToi {
 
 	public void wipeBoard(){
 		whiteTurn = true;
-		board.replace(0, 9, "---------");
+		board.replace(0, 9, ".........");
 	}
 
 	private boolean validPosition(int position){
@@ -185,7 +188,7 @@ public class ChungToi {
 	}
 
 	private boolean positionEmpty(int position){
-		if (board.charAt(position) == '-') return true;
+		if (board.charAt(position) == '.') return true;
 		return false;
 	}
 
