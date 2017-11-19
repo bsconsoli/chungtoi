@@ -25,7 +25,7 @@ public class ChungTWSclient {
 		Service ws = Service.create(url, qname);
 		ChungServer chung = ws.getPort(ChungServer.class);
 
-		executaTeste("ChungToi-0000", chung);
+		executaTeste(args[1], chung);
 	}
 
 	private static int preRegistro(ChungServer chung, java.lang.String j1, int id1, java.lang.String j2, int id2) {
