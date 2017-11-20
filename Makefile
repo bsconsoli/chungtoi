@@ -1,7 +1,8 @@
-all:			Make
+java8:
+			@javac ../chungtoi/*.java
 
-Make:
-		@javac --add-modules java.xml.ws ../chungtoi/*.java
+java9:
+			@javac --add-modules java.xml.ws ../chungtoi/*.java
 
 clean:
 			@rm -f *.class *~
