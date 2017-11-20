@@ -1,7 +1,7 @@
 To compile:
     In the chungtoi folder:
-	    make java8, caso o jdk instalado no computador seja versão 8
-	    make java9, caso o jdk instalado no computador seja versão 9
+	    make java8, for jdk version 8
+	    make java9, for jdk version 9
 
 To run:
 	Publish service:
